@@ -241,11 +241,11 @@
       </div>
       <!-- Right: Login Form -->
       <div class="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-        <h1 class="text-2xl font-semibold mb-4">Login</h1>
+        <h1 class="text-2xl font-semibold mb-4">Đăng Nhập</h1>
         <form action="#" method="POST">
           <!-- Username Input -->
           <div class="mb-4">
-            <label for="username" class="block text-gray-600">Username</label>
+            <label for="username" class="block text-gray-600">Email</label>
             <input
               type="text"
               id="username"
@@ -256,7 +256,7 @@
           </div>
           <!-- Password Input -->
           <div class="mb-4">
-            <label for="password" class="block text-gray-600">Password</label>
+            <label for="password" class="block text-gray-600">Mật khẩu</label>
             <input
               type="password"
               id="password"
@@ -273,24 +273,24 @@
               name="remember"
               class="text-blue-500"
             />
-            <label for="remember" class="text-gray-600 ml-2">Remember Me</label>
+            <label for="remember" class="text-gray-600 ml-2">Lưu tài khoản</label>
           </div>
           <!-- Forgot Password Link -->
           <div class="mb-6 text-blue-500">
-            <a href="#" class="hover:underline">Forgot Password?</a>
+            <a href="#" class="hover:underline">Quên mật khẩu?</a>
           </div>
           <!-- Login Button -->
           <button
             type="submit"
             class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
           >
-            Login
+            Đăng Nhập
           </button>
         </form>
         <!-- Sign up  Link -->
         <div class="mt-6 text-blue-500 text-center">
           <router-link :to="{ name: 'signup' }" class="hover:underline">
-            Sign up Here
+            Đăng ký tại đây
           </router-link>
         </div>
       </div>

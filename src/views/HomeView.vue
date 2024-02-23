@@ -50,7 +50,7 @@
 import PopularDestinations from "./PopularDestinations.vue";
 import Testimonials from "./Testimonials.vue";
 import BestTips from "./BestTips.vue";
-import Footer from "./Footer.vue";
+import Footer from "../components/Footer.vue";
 import Services from "./Services.vue";
 
 

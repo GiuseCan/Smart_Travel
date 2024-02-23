@@ -8,25 +8,25 @@
         :to="{ name: 'homeview' }"
         class="text-gray-100 text-2xl font-bold drop-shadow-lg"
       >
-        Home
+        Trang Chủ
       </router-link>
       <router-link
         :to="{ name: 'services' }"
         class="text-gray-100 text-2xl font-bold drop-shadow-lg"
       >
-        Services
+        Dịch Vụ
       </router-link>
       <router-link
         :to="{ name: 'aboutus' }"
         class="text-gray-100 text-2xl font-bold drop-shadow-lg"
       >
-        About Us
+        Chúng Tôi
       </router-link>
       <router-link
         :to="{ name: 'contact' }"
         class="text-gray-100 text-2xl font-bold drop-shadow-lg"
       >
-        Contact
+        Liên Hệ
       </router-link>
     </div>
     <div>
@@ -34,13 +34,13 @@
         :to="{ name: 'signup' }"
         class="text-gray-100 text-xl font-bold drop-shadow-lg mr-7"
       >
-        Sign Up
+        Đăng Ký
       </router-link>
       <router-link
         :to="{ name: 'login' }"
         class="text-gray-100 text-xl font-bold drop-shadow-lg"
       >
-        Log In
+        Đăng Nhập
       </router-link>
     </div>
   </header>

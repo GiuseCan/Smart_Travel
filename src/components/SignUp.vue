@@ -241,28 +241,16 @@
       <!-- Right Pane -->
       <div class="w-full bg-gray-100 lg:w-1/2 flex items-center justify-center">
         <div class="max-w-md w-full p-6">
+          
           <h1 class="text-3xl font-semibold mb-6 text-black text-center">
-            Sign Up
+            Đăng Ký
           </h1>
           <h1 class="text-sm font-semibold mb-6 text-gray-500 text-center">
-            Join to Our Community with all time access and free
+            Trải nghiệm cùng chúng tôi
           </h1>
 
           <form action="#" method="POST" class="space-y-4">
             <!-- Your form elements go here -->
-            <div>
-              <label
-                for="username"
-                class="block text-sm font-medium text-gray-700"
-                >Username</label
-              >
-              <input
-                type="text"
-                id="username"
-                name="username"
-                class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
-              />
-            </div>
             <div>
               <label for="email" class="block text-sm font-medium text-gray-700"
                 >Email</label
@@ -278,7 +266,20 @@
               <label
                 for="password"
                 class="block text-sm font-medium text-gray-700"
-                >Password</label
+                >Mật khẩu</label
+              >
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+              />
+            </div>
+            <div>
+              <label
+                for="password"
+                class="block text-sm font-medium text-gray-700"
+                >Nhập lại mật khẩu</label
               >
               <input
                 type="password"
@@ -292,14 +293,19 @@
                 type="submit"
                 class="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:outline-none focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300"
               >
-                Sign Up
+                Đăng Ký
               </button>
             </div>
           </form>
           <div class="mt-4 text-sm text-gray-600 text-center">
             <p>
-              Already have an account?
-              <router-link :to="{ name: 'login' }" class="text-black hover:underline"> Login here </router-link>
+              Bạn đã có tài khoản?
+              <router-link
+                :to="{ name: 'login' }"
+                class="text-black hover:underline"
+              >
+                Đăng nhập ở đây
+              </router-link>
             </p>
           </div>
         </div>
@@ -309,6 +315,5 @@
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-
+import Navbar from "../components/Navbar.vue";
 </script>
