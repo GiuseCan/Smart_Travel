@@ -2,11 +2,11 @@
   <div class="bg-[url('../../image/Backgroud.jpg')] w-full h-full bg-cover">
     <navbar class="sticky top-0" />
 
-    <main class="h-full flex justify-center mt-36">
+    <main class="flex justify-center">
       <router-view class="" />
     </main>
+    <!-- <Footer class="sticky bottom-0"/> -->
 
-    <!-- <Footer/> -->
   </div>
 </template>
 

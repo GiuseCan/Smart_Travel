@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[url('../../image/footer_1.jpg.webp')] w-full h-full object-cover"
+    class="bg-[url('../../image/footer_1.jpg.webp')] w-full object-cover pb-10"
   >
     <div class="pt-32">
       <h3 class="font-bold text-3xl text-gray-100 text-center">Subscribe to our newsletter to get the latest trends & news</h3>

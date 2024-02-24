@@ -1,65 +1,85 @@
 <template>
   <div>
-    <div class="hero-body mt-12 flex flex-wrap justify-center">
+    <div class="hero-body flex flex-wrap justify-center  mt-36">
       <h2 class="title font-bold text-gray-100 text-7xl drop-shadow-2xl">
         Trải nghiệm cùng chúng tôi
       </h2>
-      <div
-        id="form_infor"
-        class="flex gap-3 mt-20 rounded-lg bg-black-rgba py-10 px-10"
-      >
-        <div class="select is-link">
-          <select class="p-1 px-5 rounded-sm text-gray-400">
-            <option>Từ</option>
-            <option>Da Nang</option>
-            <option>Hoi An</option>
-            <option>Tam Ky</option>
-          </select>
-        </div>
-        <div class="select is-link">
-          <select class="p-1 px-5 rounded-sm text-gray-400">
-            <option>Đến</option>
-            <option>Da Nang</option>
-            <option>Hoi An</option>
-            <option>Tam Ky</option>
-          </select>
-        </div>
-        <input
-          class="input w-32 rounded-md p-1"
-          type="date"
-          placeholder="Ngày khởi hành"
-        />
-        <input
-          class="input w-32 rounded-md p-1"
-          type="date"
-          placeholder="Ngày kết thúc"
-        />
-        <input
-          class="input w-32 rounded-md p-1"
-          type="text"
-          placeholder="Ngân sách"
-        />
-        <div class="select is-link">
-          <select class="p-1 px-5 rounded-sm text-gray-400">
-            <option>Sở thích</option>
-            <option>With options</option>
-          </select>
-        </div>
-        <router-link
-          :to="{ name: 'services' }"
-          class="button py-1 px-3 rounded-md is-info bg-slate-700 text-gray-100"
+      <div class="p-16 mt-14 rounded-lg bg-black-rgba py-10 px-10">
+        <div
+          id="form_infor"
+          class="flex flex-wrap justify-center gap-3 p-12 rounded-lg bg-slate-50"
         >
-          Lên lịch
-        </router-link>
+          <div class="select is-link">
+            <select class="p-3 px-7 rounded-lg bg-slate-200 text-gray-700">
+              <option>Từ</option>
+              <option>Da Nang</option>
+              <option>Hoi An</option>
+              <option>Tam Ky</option>
+            </select>
+          </div>
+          <div class="select is-link">
+            <select class="p-3 px-7 rounded-lg bg-slate-200 text-gray-700">
+              <option>Đến</option>
+              <option>Da Nang</option>
+              <option>Hoi An</option>
+              <option>Tam Ky</option>
+            </select>
+          </div>
+          <input
+            class="input p-3 px-7 rounded-lg bg-slate-200 text-gray-700"
+            type="date"
+            placeholder="Ngày khởi hành"
+          />
+          <input
+            class="p-3 px-7 rounded-lg bg-slate-200 text-gray-700"
+            type="date"
+            placeholder="Ngày kết thúc"
+          />
+          <input
+            class="p-3 px-7 rounded-lg bg-slate-200 text-gray-700"
+            type="text"
+            placeholder="Ngân sách (VND)"
+          />
+          <div class="select is-link">
+            <select class="p-3 px-7 rounded-lg bg-slate-200 text-gray-700">
+              <option>Sở thích</option>
+              <option>With options</option>
+            </select>
+          </div>
+          <router-link
+            :to="{ name: 'render_plan' }"
+            class="button p-3 px-7 font-bold rounded-lg bg-slate-800 text-gray-50"
+          >
+            Tạo Lịch
+          </router-link>
+        </div>
       </div>
     </div>
-    
-    
-    <!-- <Footer class="mt-6"/> -->
-
+    <router-view> </router-view>
   </div>
 </template>
 
 <script setup>
 import Footer from "../components/Footer.vue";
 </script>
+
+<style scoped>
+/* div#form_infor {
+  position: relative;
+}
+div#form_infor::after {
+  color: rgb(70,46,46);
+  font-size: 20px;
+  content: "Lập lịch trình";
+  display: inline-block;
+  width: 300px;
+  height: 80px;
+  position: absolute;
+  top: -20%;
+  transform: translateY(-50%);
+  background-color: rgb(248,250,252);
+  border-radius: 10px;
+  padding-top: 10px;
+  text-align: center;
+} */
+</style>

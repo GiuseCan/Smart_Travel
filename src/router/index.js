@@ -12,9 +12,17 @@ import ManageBook from "../views/ManageBook.vue";
 import ManageLocations from "../views/ManageLocations.vue";
 import ManageStatic from "../views/ManageStatic.vue";
 import DetailLocation from "../views/DetailLocation.vue";
+import RenderPlan from "../views/RenderPlan.vue";
 import Login from "../components/Login.vue";
 import Admin from "../components/Admin.vue";
 import UserProfile from "../components/UserProfile.vue";
+import Footer from "../components/Footer.vue";
+
+import Promotion from "../views/Promotion.vue";
+import Reschedule from "../views/Reschedule.vue";
+import Refund from "../views/RefundTicket.vue";
+import DetailSchedule from "../views/DetailSchedule.vue";
+import Booking from "../views/Booking.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,6 +50,45 @@ const router = createRouter({
           path: "/services",
           name: "services",
           component: Services,
+          children: [
+            {
+              path: "render_plan",
+              name: "render_plan",
+              component: RenderPlan,
+              children: [
+                {
+                  path: "detail_schedule",
+                  name: "detail_schedule",
+                  component: DetailSchedule,
+                },
+                {
+                  path: "reschedule",
+                  name: "reschedule",
+                  component: Reschedule,
+                },
+                {
+                  path: "refund",
+                  name: "refund",
+                  component: Refund,
+                },
+                {
+                  path: "promotion",
+                  name: "promotion",
+                  component: Promotion,
+                },
+              ],
+            },
+            {
+              path: "booking",
+              name: "booking",
+              component: Booking,
+            },
+          ],
+        },
+        {
+          path: "/footer",
+          name: "footer",
+          component: Footer,
         },
       ],
     },
@@ -63,7 +110,7 @@ const router = createRouter({
         {
           path: "home_admin",
           name: "home_admin",
-          component: HomeAdmin
+          component: HomeAdmin,
         },
         {
           path: "manage_user",
@@ -80,17 +127,17 @@ const router = createRouter({
         {
           path: "manage_locations",
           name: "manage_locations",
-          component: ManageLocations
+          component: ManageLocations,
         },
         {
           path: "manage_booking",
           name: "manage_booking",
-          component: ManageBook
+          component: ManageBook,
         },
         {
           path: "manage_static_and_report",
           name: "manage_static_and_report",
-          component: ManageStatic
+          component: ManageStatic,
         },
       ],
     },

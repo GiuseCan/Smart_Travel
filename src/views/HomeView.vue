@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-medium is-link">
+  <section class="hero is-medium is-link ">
     <Services/>
     <div class="intro flex justify-center gap-10 mt-60 flex-wrap">
       <span class="flex items-center gap-5">

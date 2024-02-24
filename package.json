@@ -20,7 +20,7 @@
     "@mui/material": "^5.15.10",
     "@ntohq/buefy-next": "^0.1.2",
     "axios": "^1.6.7",
-    "bulma": "^0.9.4",
+    "flowbite": "^2.3.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5",
