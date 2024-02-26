@@ -133,6 +133,7 @@
 import Footer from "../components/Footer.vue";
 import Booking from "../views/Booking.vue";
 import "../../node_modules/flowbite";
+
 </script>
 
 <style scoped>
