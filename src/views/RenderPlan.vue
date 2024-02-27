@@ -103,8 +103,7 @@
                 </router-link>
               </section>
               <button
-                data-modal-target="default-modal"
-                data-modal-toggle="default-modal"
+                @click="toggleModal"
                 class="block py-3 px-10 font-bold text-white text-gray-100 rounded-lg font-bold bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 type="button"
               >
@@ -120,11 +119,15 @@
   <!-- Main modal -->
   <div
     id="default-modal"
+    :class="{ hidden: !showModal }"
+    @click.self="hideModal"
     tabindex="-1"
     aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
   >
-    <Booking/>
+  <div class="relative p-4 w-full max-w-fit max-h-full">
+    <Booking />
+  </div>
   </div>
   <Footer class="" />
 </template>
@@ -134,6 +137,17 @@ import Footer from "../components/Footer.vue";
 import Booking from "../views/Booking.vue";
 import "../../node_modules/flowbite";
 
+import { ref } from "vue";
+
+const showModal = ref(false);
+
+function toggleModal() {
+  showModal.value = !showModal.value;
+}
+
+function hideModal() {
+  showModal.value = false;
+}
 </script>
 
 <style scoped>

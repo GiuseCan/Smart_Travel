@@ -18,6 +18,7 @@ import Admin from "../components/Admin.vue";
 import UserProfile from "../components/UserProfile.vue";
 import Footer from "../components/Footer.vue";
 
+import UserMenu from "../views/UserMenu.vue";
 import Promotion from "../views/Promotion.vue";
 import Reschedule from "../views/Reschedule.vue";
 import Refund from "../views/RefundTicket.vue";
@@ -150,6 +151,11 @@ const router = createRouter({
       path: "/detaillocation",
       name: "detaillocation",
       component: DetailLocation,
+    },
+    {
+      path: "/usermenu",
+      name: "usermenu",
+      component: UserMenu,
     },
   ],
 });

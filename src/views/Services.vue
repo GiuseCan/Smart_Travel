@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="hero-body flex flex-wrap justify-center  mt-36">
-      <h2 class="title font-bold text-gray-100 text-7xl drop-shadow-2xl">
+      <h2 class="title font-bold text-gray-100 md:text-5xl lg:text-7xl drop-shadow-2xl">
         Trải nghiệm cùng chúng tôi
       </h2>
       <div class="p-16 mt-14 rounded-lg bg-black-rgba py-10 px-10">

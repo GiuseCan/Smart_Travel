@@ -2,13 +2,12 @@
   <div class="h-full">
     <!-- component -->
     <navbar class="sticky top-0 bg-blue-400 shadow-md pt-5 pb-7" />
-    
+
     <div class="bg-gray-100 flex justify-center items-center h-full">
       <!-- Left Pane -->
       <div
         class="h-full hidden lg:flex items-center justify-center flex-1 bg-white text-black"
       >
-      
         <div class="max-w-md text-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +247,7 @@
             <label for="username" class="block text-gray-600">Email</label>
             <input
               type="text"
-              id="username"
+              id="emailInput"
               name="username"
               class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               autocomplete="off"
@@ -259,7 +258,7 @@
             <label for="password" class="block text-gray-600">Mật khẩu</label>
             <input
               type="password"
-              id="password"
+              id="passwordInput"
               name="password"
               class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               autocomplete="off"
@@ -273,7 +272,9 @@
               name="remember"
               class="text-blue-500"
             />
-            <label for="remember" class="text-gray-600 ml-2">Lưu tài khoản</label>
+            <label for="remember" class="text-gray-600 ml-2"
+              >Lưu tài khoản</label
+            >
           </div>
           <!-- Forgot Password Link -->
           <div class="mb-6 text-blue-500">
@@ -282,6 +283,7 @@
           <!-- Login Button -->
           <button
             type="submit"
+            id="loginButton"
             class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
           >
             Đăng Nhập
@@ -299,7 +301,6 @@
 </template>
 
 <script setup>
-import Navbar from '../components/Navbar.vue'
-
+import Navbar from "../components/Navbar.vue";
 
 </script>

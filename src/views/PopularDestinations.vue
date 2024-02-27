@@ -7,65 +7,22 @@
       </h2>
     </div>
     <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
-      <router-link :to="{name: 'detaillocation'}" class="rounded-t-lg w-72 object-contain">
+      <router-link
+        v-for="index in 6"
+        :key="index"
+        :to="{ name: 'detaillocation' }"
+        class="rounded-t-lg w-72 object-contain shadow-md transition-transform hover:scale-105"
+      >
         <img
-          class="rounded-t-lg hover:scale-105 transition-transform"
+          class="rounded-t-lg"
           src="https://preview.colorlib.com/theme/travello/images/destination_2.jpg.webp"
           alt="img"
         />
-        <h3 class="font-bold text-xl py-2">Indonesia</h3>
-        <p>Nulla pretium tincidunt felis, nec.</p>
-        <h5 class="pt-1 font-bold">From $679</h5>
-      </router-link>
-      <router-link :to="{name: 'detaillocation'}" class="rounded-t-lg w-72 object-contain">
-        <img
-          class="rounded-t-lg hover:scale-105 transition-transform"
-          src="https://preview.colorlib.com/theme/travello/images/destination_2.jpg.webp"
-          alt="img"
-        />
-        <h3 class="font-bold text-xl py-2">Indonesia</h3>
-        <p>Nulla pretium tincidunt felis, nec.</p>
-        <h5 class="pt-1 font-bold">From $679</h5>
-      </router-link>
-      <router-link :to="{name: 'detaillocation'}" class="rounded-t-lg w-72 object-contain">
-        <img
-          class="rounded-t-lg hover:scale-105 transition-transform"
-          src="https://preview.colorlib.com/theme/travello/images/destination_2.jpg.webp"
-          alt="img"
-        />
-        <h3 class="font-bold text-xl py-2">Indonesia</h3>
-        <p>Nulla pretium tincidunt felis, nec.</p>
-        <h5 class="pt-1 font-bold">From $679</h5>
-      </router-link>
-      <router-link :to="{name: 'detaillocation'}" class="rounded-t-lg w-72 object-contain">
-        <img
-          class="rounded-t-lg hover:scale-105 transition-transform"
-          src="https://preview.colorlib.com/theme/travello/images/destination_2.jpg.webp"
-          alt="img"
-        />
-        <h3 class="font-bold text-xl py-2">Indonesia</h3>
-        <p>Nulla pretium tincidunt felis, nec.</p>
-        <h5 class="pt-1 font-bold">From $679</h5>
-      </router-link>
-      <router-link :to="{name: 'detaillocation'}" class="rounded-t-lg w-72 object-contain">
-        <img
-          class="rounded-t-lg hover:scale-105 transition-transform"
-          src="https://preview.colorlib.com/theme/travello/images/destination_2.jpg.webp"
-          alt="img"
-        />
-        <h3 class="font-bold text-xl py-2">Indonesia</h3>
-        <p>Nulla pretium tincidunt felis, nec.</p>
-        <h5 class="pt-1 font-bold">From $679</h5>
-      </router-link>
-      <router-link :to="{name: 'detaillocation'}" class="rounded-t-lg w-72 object-contain">
-        <img
-          class="rounded-t-lg hover:scale-105 transition-transform"
-          src="https://preview.colorlib.com/theme/travello/images/destination_2.jpg.webp"
-          alt="img"
-        />
-        <h3 class="font-bold text-xl py-2">Indonesia</h3>
-        <p>Nulla pretium tincidunt felis, nec.</p>
-        <h5 class="pt-1 font-bold">From $679</h5>
+        <div class="p-3">
+          <h3 class="font-bold text-xl py-2">Indonesia</h3>
+          <p>Nulla pretium tincidunt felis, nec.</p>
+          <h5 class="pt-1 font-bold">From $679</h5>
+        </div>
       </router-link>
     </div>
   </div>

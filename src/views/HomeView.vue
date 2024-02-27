@@ -6,7 +6,7 @@
         <img
           src="https://preview.colorlib.com/theme/travello/images/beach.svg"
           alt="icon"
-          class="w-16"
+          class="w-16" 
         />
         <span>
           <h3 class="font-bold">Top Destinations</h3>

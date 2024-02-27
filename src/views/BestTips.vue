@@ -61,3 +61,9 @@
 <script setup>
 
 </script>
+
+<style scoped>
+div#besttip {
+height: 770px; 
+}
+</style>

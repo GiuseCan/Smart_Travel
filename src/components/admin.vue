@@ -1,6 +1,5 @@
 <template>
   <div id="container" class="flex flex-col h-screen bg-gray-100">
-    <!-- Barra de navegación superior -->
     <div
       id="navbar"
       class="bg-white text-white shadow-2xl w-full p-2 flex items-center justify-between"
@@ -15,10 +14,8 @@
           </router-link>
         </div>
         <div class="md:hidden flex items-center">
-          <!-- Se muestra solo en dispositivos pequeños -->
           <button id="menuBtn">
             <i class="fas fa-bars text-gray-500 text-lg"></i>
-            <!-- Ícono de menú -->
           </button>
         </div>
       </div>
