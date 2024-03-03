@@ -30,6 +30,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: 'default_layout',
       component: DefaultLayout,
       children: [
         {

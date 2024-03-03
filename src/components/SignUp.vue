@@ -241,7 +241,6 @@
       <!-- Right Pane -->
       <div class="w-full bg-gray-100 lg:w-1/2 flex items-center justify-center">
         <div class="max-w-md w-full p-6">
-          
           <h1 class="text-3xl font-semibold mb-6 text-black text-center">
             Đăng Ký
           </h1>
@@ -249,7 +248,7 @@
             Trải nghiệm cùng chúng tôi
           </h1>
 
-          <form action="#" method="POST" class="space-y-4">
+          <form @submit="handleSubmit()" class="space-y-4">
             <!-- Your form elements go here -->
             <div>
               <label for="email" class="block text-sm font-medium text-gray-700"
@@ -316,4 +315,38 @@
 
 <script setup>
 import Navbar from "../components/Navbar.vue";
+import axios from 'axios';
+
+function handleSubmit() {
+    this.$event.preventDefault(); // Prevent default form submission
+    console.log("hihi");
+    const formData = new FormData(this.$event.target); // Get form data
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const confirmPassword = formData.get('confirm_password'); // Assuming a field for password confirmation
+
+    // Ensure passwords match (optional for UX improvement)
+    if (password !== confirmPassword) {
+      // Display error message about mismatched passwords
+      return;
+    }
+
+    axios.post('http://localhost:8080/smart_travel_api/api/user/signup.php', formData)
+      .then(response => {
+        debugger;
+        if (response.data.message === 'Account Created') {
+          // Handle successful signup
+          console.log('Account created successfully!');
+          // Redirect to another page or display a success message
+        } else {
+          // Handling account creation failure
+          console.error('Account creation failed:', response.data.message);
+          // Display an error message to the user
+        }
+      })
+      .catch(error => {
+        console.error('API request failed:', error);
+        // Handle network errors or API unavailability
+      });
+  }
 </script>

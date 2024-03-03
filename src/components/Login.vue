@@ -241,11 +241,12 @@
       <!-- Right: Login Form -->
       <div class="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
         <h1 class="text-2xl font-semibold mb-4">Đăng Nhập</h1>
-        <form action="#" method="POST">
+        <form @submit.prevent="login">
           <!-- Username Input -->
           <div class="mb-4">
             <label for="username" class="block text-gray-600">Email</label>
             <input
+              v-model="email"
               type="text"
               id="emailInput"
               name="username"
@@ -257,6 +258,7 @@
           <div class="mb-4">
             <label for="password" class="block text-gray-600">Mật khẩu</label>
             <input
+              v-model="password"
               type="password"
               id="passwordInput"
               name="password"
@@ -284,6 +286,7 @@
           <button
             type="submit"
             id="loginButton"
+            @click="Login()"
             class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
           >
             Đăng Nhập
@@ -291,9 +294,9 @@
         </form>
         <!-- Sign up  Link -->
         <div class="mt-6 text-blue-500 text-center">
-          <router-link :to="{ name: 'signup' }" class="hover:underline">
-            Đăng ký tại đây
-          </router-link>
+          <router-link :to="{ name: 'signup' }" class="hover:underline"
+            >Đăng ký tại đây</router-link
+          >
         </div>
       </div>
     </div>
@@ -302,5 +305,32 @@
 
 <script setup>
 import Navbar from "../components/Navbar.vue";
+import axios from "axios";
+import { useRouter } from 'vue-router';
 
+import { ref, computed, onMounted } from "vue";
+
+const email = ref("");
+const password = ref("");
+const router = useRouter();
+
+async function Login() {
+  const formData = new FormData();
+  formData.append("email", this.email);
+  formData.append("password", this.password);
+
+  await axios
+    .post("http://localhost:8080/smart_travel_api/api/user/login.php", formData)
+    .then((response) => {
+      console.log(response.data);
+      // Lưu trữ thông tin người dùng (tùy chọn)
+      localStorage.setItem("user", JSON.stringify(response.data));
+      console.log("Navigation triggered");
+      router.push("/");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Email hoặc mật khẩu không đúng. Vui lòng thử lại!");
+    });
+} 
 </script>

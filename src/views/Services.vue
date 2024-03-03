@@ -59,9 +59,10 @@
   </div>
 </template>
 
-<script setup>
-import Footer from "../components/Footer.vue";
-</script>
+// <script setup>
+// import Footer from "../components/Footer.vue";
+// </script>
+
 
 <style scoped>
 /* div#form_infor {
