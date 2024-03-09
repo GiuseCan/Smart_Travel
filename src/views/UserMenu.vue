@@ -1,13 +1,17 @@
 <template>
-  <div class="flex justify-end pt-5 pr-5">
-    <div class="relative inline-block mb-20">
+  <div class="flex justify-end">
+    <div class="relative inline-block">
       <button
-        id="dropdownDefaultButton"
-        data-dropdown-toggle="dropdown"
-        class="relative z-10 flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none"
+        class="relative flex items-center p-2 text-sm text-gray-100 bg-white-rgba border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none"
         type="button"
+        @click="toggleDropMenu()"
       >
-        <span class="mx-1">Cẩn</span>
+        <img
+          class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
+          src="../../image/avt.jpg"
+          alt="jane avatar"
+        />
+        <span class="mx-1">{{ user_name }}</span>
         <svg
           class="w-5 h-5 mx-1"
           viewBox="0 0 24 24"
@@ -24,29 +28,21 @@
       <!-- Dropdown menu -->
       <div
         id="dropdown"
-        class="absolute pr-5 right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"
+        class="hidden absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"
       >
-        <div
-          class="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdownDefaultButton"
-        >
+        <div class="py-2 text-sm text-gray-700 dark:text-gray-200">
           <a
             href="#"
             class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
           >
-            <img
-              class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9"
-              src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200"
-              alt="jane avatar"
-            />
             <div class="mx-1">
               <h1
                 class="text-sm font-semibold text-gray-700 dark:text-gray-200"
               >
-                Jane Doe
+                {{ user_name }}
               </h1>
               <p class="text-sm text-gray-500 dark:text-gray-400">
-                janedoe@exampl.com
+                {{ email }}
               </p>
             </div>
           </a>
@@ -56,23 +52,17 @@
             :to="{ name: 'userprofile' }"
             class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
           >
-            view profile
+            Chỉnh sửa hồ sơ
           </router-link>
 
           <hr class="border-gray-200 dark:border-gray-700" />
-
-          <a
-            href="#"
+          <button
+            type="submit"
+            @click="Logout()"
             class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
           >
-            Help
-          </a>
-          <a
-            href="#"
-            class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-          >
-            Sign Out
-          </a>
+            Đăng xuất
+          </button>
         </div>
       </div>
     </div>
@@ -80,7 +70,43 @@
 </template>
 
 <script setup>
-import "../../node_modules/flowbite/dist/flowbite";
+import { useRouter } from "vue-router";
+import axios from "axios";
+import { ref, computed, watch, onMounted } from "vue";
+
+// const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user"));
+const user_name = ref(user?.user?.user_name || ""); // Use ref instead of directly extracting
+const email = ref(user?.user?.email || ""); // Use ref instead of directly extracting
+const router = useRouter();
+
+async function Logout() {
+  try {
+    // Gọi API logout
+    const response = await axios.get(
+      "http://localhost:8080/smart_travel_api/api/user/logout.php"
+    );
+
+    // Xử lý thành công
+    if (response.status === 200) {
+      // Xóa token và thông tin người dùng
+      localStorage.removeItem("user");
+
+      // Chuyển hướng đến trang chủ
+      router.push("/");
+    } else {
+      throw new Error("Lỗi khi đăng xuất");
+    }
+  } catch (error) {
+    // Hiển thị thông báo lỗi
+    console.error(error.message);
+  }
+}
+
+function toggleDropMenu() {
+  const dropdown = document.getElementById("dropdown");
+  dropdown.classList.toggle("hidden");
+}
 </script>
 
 <style scoped></style>

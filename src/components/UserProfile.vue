@@ -1,7 +1,7 @@
 <template>
   <!-- component -->
   <section class="bg-white dark:bg-gray-900">
-    <navbar class="sticky top-0 bg-blue-300 shadow-md pt-5 pb-7" />
+    <navbar class="sticky top-0 bg-blue-300 shadow-md" />
 
     <div class="flex justify-center min-h-screen">
       <div
@@ -25,31 +25,33 @@
                 />
               </div>
               <div v-else>
-              <label
-                class="w-50 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white"
-              >
-                <svg
-                  class="w-8 h-8"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+                <label
+                  class="w-50 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white"
                 >
-                  <path
-                    d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
-                  />
-                </svg>
-                <span class="mt-2 text-base leading-normal">Ảnh đại diện</span>
+                  <svg
+                    class="w-8 h-8"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"
+                    />
+                  </svg>
+                  <span class="mt-2 text-base leading-normal"
+                    >Ảnh đại diện</span
+                  >
 
-                <input
-                  type="file"
-                  class="hidden"
-                  accept="image/*"
-                  @change="handleFileUpload"
-                />
-              </label>
+                  <input
+                    type="file"
+                    class="hidden"
+                    accept="image/*"
+                    @change="handleFileUpload"
+                  />
+                </label>
+              </div>
             </div>
-            </div>
-            
+
             <div>
               <h1
                 class="text-2xl font-semibold tracking-wider text-gray-800 dark:text-white"
@@ -63,14 +65,17 @@
             </div>
           </div>
 
-          <form class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+          <form
+            @submit.prevent="update"
+            class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2"
+          >
             <div>
               <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
                 >Họ và tên</label
               >
               <input
+                v-model="user_name"
                 type="text"
-                placeholder="Cẩn"
                 class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
@@ -80,6 +85,7 @@
                 >SĐT</label
               >
               <input
+                v-model="phone_number"
                 type="text"
                 placeholder="XXX-XX-XXXX-XXX"
                 class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -91,7 +97,21 @@
                 >Địa chỉ Email</label
               >
               <input
+                disabled="true;"
+                v-model="email"
                 type="email"
+                placeholder="canbl@example.com"
+                class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-gray-200 border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                >Mật khẩu</label
+              >
+              <input
+                v-model="password"
+                type="password"
                 placeholder="canbl@example.com"
                 class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -102,6 +122,7 @@
                 >Ngày sinh</label
               >
               <input
+                v-model="birth_day"
                 type="date"
                 placeholder="Enter your birthday"
                 class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -126,51 +147,15 @@
                 >Địa chỉ</label
               >
               <input
-                type="password"
-                placeholder="Enter your address"
+                v-model="address"
+                type="text"
+                placeholder="Địa chỉ của bạn"
                 class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
-
-            <div>
-              <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                >Sở thich</label
-              >
-
-              <div id="check_preference" class="flex gap-5 flex-wrap">
-                <label class="inline-flex items-center mt-3">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox h-5 w-5 text-gray-600"
-                    checked
-                  /><span class="ml-2 text-gray-700">Danger</span>
-                </label>
-
-                <label class="inline-flex items-center mt-3">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox h-5 w-5 text-red-600"
-                    checked
-                  /><span class="ml-2 text-gray-700">Chill</span>
-                </label>
-                <label class="inline-flex items-center mt-3">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox h-5 w-5 text-red-600"
-                    checked
-                  /><span class="ml-2 text-gray-700">Chill</span>
-                </label>
-                <label class="inline-flex items-center mt-3">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox h-5 w-5 text-red-600"
-                    checked
-                  /><span class="ml-2 text-gray-700">Chill</span>
-                </label>
-              </div>
-            </div>
-
             <button
+              type="submit"
+              @click="update()"
               class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
             >
               <span>Lưu chỉnh sửa</span>
@@ -197,7 +182,50 @@
 
 <script setup>
 import Navbar from "../components/Navbar.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import axios from "axios";
+
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user);
+console.log(user.user);
+const user_id = ref(user.user.user_id);
+const user_name = ref(user.user.user_name);
+const password = ref(user.user.password);
+const email = ref(user.user.email);
+const phone_number = ref(user.user.phone_number);
+const gender = ref(user.user.gender);
+const birth_day = ref(user.user.birth_day);
+const address = ref(user.user.address);
+const avatar = ref(user.user.avatar);
+onMounted(() => {});
+
+// inputElement.placeholder =  user.user_name;
+async function update() {
+  const formData = new FormData();
+  formData.append("user_id", this.user_id);
+  formData.append("user_name", this.user_name);
+  formData.append("password", this.password);
+  formData.append("phone_number", this.phone_number);
+  formData.append("birth_day", this.birth_day);
+  formData.append("gender", this.gender);
+  formData.append("address", this.address);
+  formData.append("avatar", this.avatar);
+  await axios
+    .post(
+      "http://localhost:8080/smart_travel_api/api/user/update.php",
+      formData
+    )
+    .then((response) => {
+      localStorage.removeItem("user");
+
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+      alert("Cập nhật thành công");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Cập nhật thất bại. Xin vui lòng thử lại!");
+    });
+}
 
 const imageUrl = ref(null);
 

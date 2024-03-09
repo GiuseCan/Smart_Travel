@@ -325,7 +325,7 @@ async function Login() {
       console.log(response.data);
       // Lưu trữ thông tin người dùng (tùy chọn)
       localStorage.setItem("user", JSON.stringify(response.data));
-      console.log("Navigation triggered");
+      // console.log("Navigation triggered");
       router.push("/");
     })
     .catch((error) => {

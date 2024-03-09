@@ -248,16 +248,18 @@
             Trải nghiệm cùng chúng tôi
           </h1>
 
-          <form @submit="handleSubmit()" class="space-y-4">
+          <form @submit.prevent="login" class="space-y-4">
             <!-- Your form elements go here -->
             <div>
               <label for="email" class="block text-sm font-medium text-gray-700"
                 >Email</label
               >
               <input
+                v-model="email"
                 type="text"
                 id="email"
                 name="email"
+                placeholder="Email"
                 class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -268,9 +270,11 @@
                 >Mật khẩu</label
               >
               <input
+                v-model="password"
                 type="password"
                 id="password"
                 name="password"
+                placeholder="Mật khẩu"
                 class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -282,13 +286,16 @@
               >
               <input
                 type="password"
-                id="password"
+                v-model="password_rewrite"
+                id="password_rewrite"
                 name="password"
+                placeholder="Nhập lại mật khẩu"
                 class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div>
               <button
+              @click="Signup()"
                 type="submit"
                 class="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md py-2 px-4 w-full"
               >
@@ -315,38 +322,38 @@
 
 <script setup>
 import Navbar from "../components/Navbar.vue";
-import axios from 'axios';
+import axios from "axios";
+import { useRouter } from "vue-router";
+import { ref } from "vue";
+const router = useRouter();
 
-function handleSubmit() {
-    this.$event.preventDefault(); // Prevent default form submission
-    console.log("hihi");
-    const formData = new FormData(this.$event.target); // Get form data
-    const email = formData.get('email');
-    const password = formData.get('password');
-    const confirmPassword = formData.get('confirm_password'); // Assuming a field for password confirmation
+const email = ref("");
+const password = ref("");
+const password_rewrite = ref("");
 
-    // Ensure passwords match (optional for UX improvement)
-    if (password !== confirmPassword) {
-      // Display error message about mismatched passwords
-      return;
-    }
+async function Signup() {
+  if (password.value.trim() == password_rewrite.value.trim()) {
+    const formData = new FormData();
+    formData.append("email", this.email);
+    formData.append("password", this.password);
 
-    axios.post('http://localhost:8080/smart_travel_api/api/user/signup.php', formData)
-      .then(response => {
-        debugger;
-        if (response.data.message === 'Account Created') {
-          // Handle successful signup
-          console.log('Account created successfully!');
-          // Redirect to another page or display a success message
-        } else {
-          // Handling account creation failure
-          console.error('Account creation failed:', response.data.message);
-          // Display an error message to the user
-        }
+    await axios
+      .post(
+        "http://localhost:8080/smart_travel_api/api/user/signup.php",
+        formData
+      )
+      .then((response) => {
+        // debugger;
+        console.log(response.data);
+        alert("Đăng ký thành công")
+        router.push("/");
       })
-      .catch(error => {
-        console.error('API request failed:', error);
-        // Handle network errors or API unavailability
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Email đã được đăng ký. Xin vui lòng thử lại!");
       });
+  } else {
+    alert("Mật khẩu không trùng khớp");
   }
+}
 </script>

@@ -1,7 +1,9 @@
 <template>
   <section class="hero is-medium is-link ">
-    <Services/>
-    <div class="intro flex justify-center gap-10 mt-60 flex-wrap">
+    <Services />
+    
+    <div class="z-10 intro flex justify-center gap-10 flex-wrap rounded-t-3xl bg-white pt-20 mt-20">
+      
       <span class="flex items-center gap-5">
         <img
           src="https://preview.colorlib.com/theme/travello/images/beach.svg"
