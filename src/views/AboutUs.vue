@@ -10,20 +10,23 @@
       <div class="flex justify-center px-44 gap-10">
         <div class="" id="text_about">
           <h4 class="font-bold text-xl pb-7">
-            Pellentesque sit amet elementum ccumsan sit amet mattis eget,
-            tristique at leo. Vivamus massa.Tempor massa et laoreet .Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit.
+            Bạn mơ ước được khám phá những bãi biển cát trắng trải dài, hay
+            chinh phục những đỉnh núi hùng vĩ? Hoặc đơn giản là muốn đắm mình
+            trong nét văn hóa đặc sắc của một vùng miền khác? JustChill chính là
+            người bạn đồng hành lý tưởng cho chuyến đi sắp tới của bạn.
           </h4>
           <p class="text-gray-500">
-            Pellentesque sit amet elementum ccumsan sit amet mattis eget,
-            tristique at leo. Vivamus massa.Tempor massa et laoreet .Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Sed eu laoreet ante,
-            sollicitudin volutpat quam. Vestibulum posuere malesuada ultrices.
-            In pulvinar rhoncus lacus at aliquet. Nunc vitae lacus varius,
-            auctor nisi sit amet, consectetur mauris. Curabitur sodales semper
-            est, vel faucibus urna laoreet vel. Ut justo diam, sodales non
-            pulvinar at, vulputate quis neque. Etiam aliquam purus vel ultricies
-            consequat.
+            Bạn đang khao khát đặt chân đến những vùng đất mới? Bạn mơ ước được
+            khám phá những bãi biển cát trắng trải dài, hay chinh phục những
+            đỉnh núi hùng vĩ? Hoặc đơn giản là muốn đắm mình trong nét văn hóa
+            đặc sắc của một vùng miền khác? JustChill.vn chính là người bạn đồng
+            hành lý tưởng cho chuyến đi sắp tới của bạn.<br> JustChill.vn -
+            Trải nghiệm du lịch tuyệt vời cho bạn JustChill.vn cung cấp đa dạng
+            các nguồn thông tin du lịch hữu ích, từ những địa điểm tham quan nổi
+            tiếng đến các trải nghiệm độc đáo, phù hợp với sở thích của từng
+            người. Bên cạnh đó, trang web còn hỗ trợ đặt phòng khách sạn, vé máy
+            bay và các dịch vụ du lịch khác với mức giá ưu đãi. Hãy lên kế hoạch
+            cho hành trình của bạn ngay hôm nay cùng JustChill.vn!
           </p>
           <button
             class="mt-10 bg-slate-500 py-3 px-8 rounded-xl bg-slate-900 text-lg text-gray-200"
@@ -82,7 +85,9 @@
       >
         <section class="mb-20 flex flex-col items-center gap-6 pt-10">
           <h5 class="text-gray-100">SIMPLY AMAZING PLACES</h5>
-          <h4 class="text-gray-100 font-bold text-5xl">Why choose us?</h4>
+          <h4 class="text-gray-100 font-bold text-5xl">
+            3 Lý Do Nên Chọn JustChill
+          </h4>
         </section>
         <div class="flex justify-around px-36" id="whychoose">
           <div
@@ -90,10 +95,12 @@
             id="chooseus"
           >
             <img src="../../image/Love_Bridge.jpg" alt="img" />
-            <h3 class="pt-2 font-bold text-gray-950 text-2xl">Fast Services</h3>
+            <h3 class="pt-2 font-bold text-gray-950 text-2xl">
+              Đội ngũ chuyên gia
+            </h3>
             <p class="text-gray-500 text-center px-5">
-              Pellentesque sit amet elementum ccumsan sit amet mattis eget,
-              tristique at leo.
+              Chúng tôi sẵn sàng tư vấn, giải đáp mọi thắc mắc để bạn lựa chọn
+              được hành trình phù hợp với sở thích và ngân sách.
             </p>
           </div>
           <div
@@ -101,10 +108,12 @@
             id="chooseus"
           >
             <img src="../../image/Cau_Rong_1.jpg" alt="img" />
-            <h3 class="pt-2 font-bold text-gray-950 text-2xl">Great Team</h3>
+            <h3 class="pt-2 font-bold text-gray-950 text-2xl">
+              Nhanh chóng và dễ dàng
+            </h3>
             <p class="text-gray-500 text-center px-5">
-              Pellentesque sit amet elementum ccumsan sit amet mattis eget,
-              tristique at leo.
+              Tiết kiệm thời gian lên kế hoạch đồng nghĩa với việc bạn có thêm
+              nhiều phút giây tận hưởng kỳ nghỉ tuyệt vời.
             </p>
           </div>
           <div
@@ -112,10 +121,12 @@
             id="chooseus"
           >
             <img src="../../image/Thuan_Phuo_Bridge.jpg" alt="img" />
-            <h3 class="pt-2 font-bold text-gray-950 text-2xl">Best Deals</h3>
+            <h3 class="pt-2 font-bold text-gray-950 text-2xl">
+              Ưu đãi hấp dẫn
+            </h3>
             <p class="text-gray-500 text-center px-5">
-              Pellentesque sit amet elementum ccumsan sit amet mattis eget,
-              tristique at leo.
+              Bên cạnh đó, trang web thường xuyên cập nhật các chương trình
+              khuyến mãi hấp dẫn để bạn tiết kiệm chi phí cho chuyến đi.
             </p>
           </div>
         </div>
@@ -133,7 +144,7 @@
               alt="avt"
             />
             <h4 class="text-xl font-bold">Cẩn Cris</h4>
-            <p class="text-gray-500 text-center" >
+            <p class="text-gray-500 text-center">
               Pellentesque sit amet elementum ccumsan sit amet mattis eget,
               tristique at leo. Vivamus massa.
             </p>
@@ -145,7 +156,7 @@
               alt="avt"
             />
             <h4 class="text-xl font-bold">Cẩn Cris</h4>
-            <p class="text-gray-500 text-center" >
+            <p class="text-gray-500 text-center">
               Pellentesque sit amet elementum ccumsan sit amet mattis eget,
               tristique at leo. Vivamus massa.
             </p>
@@ -157,7 +168,7 @@
               alt="avt"
             />
             <h4 class="text-xl font-bold">Cẩn Cris</h4>
-            <p class="text-gray-500 text-center" >
+            <p class="text-gray-500 text-center">
               Pellentesque sit amet elementum ccumsan sit amet mattis eget,
               tristique at leo. Vivamus massa.
             </p>
@@ -169,7 +180,7 @@
               alt="avt"
             />
             <h4 class="text-xl font-bold">Cẩn Cris</h4>
-            <p class="text-gray-500 text-center" >
+            <p class="text-gray-500 text-center">
               Pellentesque sit amet elementum ccumsan sit amet mattis eget,
               tristique at leo. Vivamus massa.
             </p>

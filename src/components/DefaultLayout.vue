@@ -10,8 +10,8 @@
     </div>
   <!-- </div> -->
 </template>
-
 <script setup>
 import Navbar from "../components/Navbar.vue";
 import Footer from "./Footer.vue";
+import Chatra from "../views/Chatra.vue"
 </script>

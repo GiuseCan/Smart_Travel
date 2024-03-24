@@ -12,6 +12,8 @@ import ManageBook from "../views/ManageBook.vue";
 import ManageLocations from "../views/ManageLocations.vue";
 import ManageStatic from "../views/ManageStatic.vue";
 import DetailLocation from "../views/DetailLocation.vue";
+import ManageTicket from "../views/ManageTicket.vue";
+import ManageDepartureAndDestination from "../views/ManageDepartureAndDestination.vue";
 import RenderPlan from "../views/RenderPlan.vue";
 import Login from "../components/Login.vue";
 import Admin from "../components/Admin.vue";
@@ -26,6 +28,7 @@ import DetailSchedule from "../views/DetailSchedule.vue";
 import Booking from "../views/Booking.vue";
 import Payment from "../views/Payment.vue";
 import Ticket from "../views/Ticket.vue";
+import TicketUser from "../views/TicketUser.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -143,6 +146,16 @@ const router = createRouter({
           name: "manage_static_and_report",
           component: ManageStatic,
         },
+        {
+          path: "manage_ticket",
+          name: "manage_ticket",
+          component: ManageTicket,
+        },
+        {
+          path: "manage_departure_and_destination",
+          name: "manage_departure_and_destination",
+          component: ManageDepartureAndDestination,
+        },
       ],
     },
     {
@@ -165,6 +178,11 @@ const router = createRouter({
       name: "Ticket",
       component: Ticket,
     },
+    {
+      path: "/ticketUser/:id?",
+      name: "ticket_user",
+      component: TicketUser,
+    }
   ],
 });
 

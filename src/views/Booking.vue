@@ -106,10 +106,11 @@
           <h5 class="pt-5">Thông tin liên hệ</h5>
         </div>
         <div class="border-solid p-2 border-gray-800">
-          <form>
+          <form @submit.prevent="submitForm">
             <div class="grid gap-6 mb-6 md:grid-cols-2">
               <div class="relative">
                 <input
+                  v-model="user_name"
                   required
                   type="text"
                   id="default_filled"
@@ -119,39 +120,13 @@
                 <label
                   for="default_filled"
                   class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-                  >Họ (vd: Nguyen)</label
+                  >Họ và tên</label
                 >
               </div>
+
               <div class="relative">
                 <input
-                  required
-                  type="text"
-                  id="default_filled"
-                  class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                />
-                <label
-                  for="default_filled"
-                  class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-                  >Tên Đệm & Tên (vd: Nguyen Cong Can)</label
-                >
-              </div>
-              <div class="relative">
-                <input
-                  required
-                  type="text"
-                  id="default_filled"
-                  class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                />
-                <label
-                  for="default_filled"
-                  class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-                  >Địa chỉ</label
-                >
-              </div>
-              <div class="relative">
-                <input
+                  v-model="phone_number"
                   required
                   type="text"
                   id="default_filled"
@@ -166,6 +141,22 @@
               </div>
               <div class="relative">
                 <input
+                  v-model="address"
+                  required
+                  type="text"
+                  id="default_filled"
+                  class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+                <label
+                  for="default_filled"
+                  class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+                  >Địa chỉ</label
+                >
+              </div>
+              <div class="relative">
+                <input
+                  v-model="email"
                   required
                   type="text"
                   id="default_filled"
@@ -180,6 +171,7 @@
               </div>
               <div class="relative">
                 <input
+                  v-model="birth_day"
                   required
                   type="date"
                   id="default_filled"
@@ -233,26 +225,121 @@
 </template>
 
 <script setup>
+import { onMounted, ref, watch } from "vue";
 import axios from "axios";
+
+const storedUser = localStorage.getItem("user");
+const user = ref(storedUser ? JSON.parse(storedUser) : {});
+
+// Kiểm tra xem user có tồn tại và có giá trị hợp lệ không
+const user_id = ref(
+  user.value && user.value.user && user.value.user.user_id
+    ? user.value.user.user_id
+    : ""
+);
+const user_name = ref(
+  user.value && user.value.user && user.value.user.user_name
+    ? user.value.user.user_name
+    : ""
+);
+const password = ref(
+  user.value && user.value.user && user.value.user.password
+    ? user.value.user.password
+    : ""
+);
+const email = ref(
+  user.value && user.value.user && user.value.user.email
+    ? user.value.user.email
+    : ""
+);
+const phone_number = ref(
+  user.value && user.value.user && user.value.user.phone_number
+    ? user.value.user.phone_number
+    : ""
+);
+const gender = ref(
+  user.value && user.value.user && user.value.user.gender
+    ? user.value.user.gender
+    : ""
+);
+const birth_day = ref(
+  user.value && user.value.user && user.value.user.birth_day
+    ? user.value.user.birth_day
+    : ""
+);
+const address = ref(
+  user.value && user.value.user && user.value.user.address
+    ? user.value.user.address
+    : ""
+);
 
 const apiUrl =
   "http://localhost:8080/smart_travel_api/api/checkout/OnlineCheckoutController.php";
 
-// Example data to send (customize as needed)
 const paymentData = {
-  amount: 100000, // Amount in VND
+  amount: 100000,
   orderId: "your-order-id",
   // ...other payment details
 };
+
+async function SignupCustomer() {
+  const formData = new FormData();
+  formData.append("customer_name", user_name.value);
+  formData.append("email", email.value);
+  formData.append("phone_number", phone_number.value);
+  formData.append("birth_day", birth_day.value);
+  formData.append("address", address.value);
+
+  console.log(user_name.value);
+  await axios
+    .post(
+      "http://localhost:8080/smart_travel_api/api/customer/signup.php",
+      formData
+    )
+    .then((response) => {
+      // debugger;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+const total = ref("");
+const ticket_id = ref("");
+onMounted(() => {
+  const storedPlan = localStorage.getItem("plan");
+  const plan = ref(storedPlan ? JSON.parse(storedPlan) : {});
+  console.log(plan.value);
+  total.value = plan.value.total;
+  ticket_id.value = plan.value.id_ticket;
+  console.log(total.value);
+  console.log(ticket_id.value);
+});
+
 const initiatePayment = async () => {
+  const formDataBooking = new FormData();
+  // formDataItinerary.append("user_id", user_id.value);
+  // formDataItinerary.append("ticket_id", ticket_id.value);
+  // formDataItinerary.append("start_time", start_time.value);
+  // formDataItinerary.append("end_time", end_time.value);
+  formDataBooking.append("amount", total.value);
+  formDataBooking.append("order_id", ticket_id.value);
+  // formDataItinerary.append("visit_id", visit_id.value);
+  console.log(total.value);
+  // http://localhost:8080/smart_travel_api/api/checkout/BookPlan.php
   axios
-    .post(apiUrl)
+    .post(apiUrl, formDataBooking)
     .then((response) => {
       console.log("Payment request successful:", response.data);
       console.log(response.data.data);
-      // Redirect user to VNPAY payment page if redirection is required
+      console.log("thanh toans 1");
+
       if (response.data.data) {
         // debugger;
+        if (user_id.value == "") {
+          SignupCustomer();
+        }
+        localStorage.setItem("emailBooking", JSON.stringify(email.value));
         window.location.href = response.data.data;
       } else {
         // Handle successful payment without redirection

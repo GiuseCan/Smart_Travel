@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-end">
+  <div class=" flex justify-end">
     <div class="relative inline-block">
       <button
         class="relative flex items-center p-2 text-sm text-gray-100 bg-white-rgba border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none"
@@ -28,7 +28,7 @@
       <!-- Dropdown menu -->
       <div
         id="dropdown"
-        class="hidden absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"
+        class="hidden absolute right-0 z-50 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800"
       >
         <div class="py-2 text-sm text-gray-700 dark:text-gray-200">
           <a
@@ -53,6 +53,12 @@
             class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             Chỉnh sửa hồ sơ
+          </router-link>
+          <router-link
+          :to="{ name: 'ticket_user', params: { id: id_user} }"
+            class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            Vé đã đặt
           </router-link>
 
           <hr class="border-gray-200 dark:border-gray-700" />
@@ -79,6 +85,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 const user_name = ref(user?.user?.user_name || ""); // Use ref instead of directly extracting
 const email = ref(user?.user?.email || ""); // Use ref instead of directly extracting
 const router = useRouter();
+const id_user = ref(user?.user?.user_id || "")
 
 async function Logout() {
   try {
@@ -93,7 +100,7 @@ async function Logout() {
       localStorage.removeItem("user");
 
       // Chuyển hướng đến trang chủ
-      router.push("/");
+      window.location.href = "/"; // Chuyển hướng đến trang chủ
     } else {
       throw new Error("Lỗi khi đăng xuất");
     }
@@ -102,6 +109,7 @@ async function Logout() {
     console.error(error.message);
   }
 }
+
 
 function toggleDropMenu() {
   const dropdown = document.getElementById("dropdown");

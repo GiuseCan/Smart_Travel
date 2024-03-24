@@ -239,7 +239,57 @@
         </div>
       </div>
       <!-- Right: Login Form -->
-      <div class="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
+      <div class="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2 relative">
+        <div
+          v-if="showSuccessToast"
+          id="toast-success"
+          class="flex absolute top-0 left-1/2 -translate-x-1/2 items-center w-full mr-10 max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+          role="alert"
+        >
+          <div
+            class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200"
+          >
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"
+              />
+            </svg>
+            <span class="sr-only">Check icon</span>
+          </div>
+          <div class="ms-3 text-sm font-normal px-10">Đăng nhập thành công</div>
+        </div>
+        <div
+          v-if="showFailToast"
+          id="toast-danger"
+          class="absolute top-0 left-1/2 -translate-x-1/2 mr-10 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+          role="alert"
+        >
+          <div
+            class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200"
+          >
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"
+              />
+            </svg>
+            <span class="sr-only">Error icon</span>
+          </div>
+          <div class="ms-3 text-sm font-normal">
+            Email hoặc mật khẩu không đúng. <br>Vui lòng thử lại!
+          </div>
+        </div>
         <h1 class="text-2xl font-semibold mb-4">Đăng Nhập</h1>
         <form @submit.prevent="login">
           <!-- Username Input -->
@@ -306,13 +356,15 @@
 <script setup>
 import Navbar from "../components/Navbar.vue";
 import axios from "axios";
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 
 import { ref, computed, onMounted } from "vue";
 
 const email = ref("");
 const password = ref("");
 const router = useRouter();
+const showSuccessToast = ref(false); // Biến để kiểm soát hiển thị toast
+const showFailToast = ref(false); // Biến để kiểm soát hiển thị toast
 
 async function Login() {
   const formData = new FormData();
@@ -323,14 +375,33 @@ async function Login() {
     .post("http://localhost:8080/smart_travel_api/api/user/login.php", formData)
     .then((response) => {
       console.log(response.data);
+      const userRole = response.data.user.role; // Lấy role của người dùng từ response
+
       // Lưu trữ thông tin người dùng (tùy chọn)
       localStorage.setItem("user", JSON.stringify(response.data));
-      // console.log("Navigation triggered");
-      router.push("/");
+      // Hiển thị toast khi đăng nhập thành công
+      showSuccessToast.value = true;
+      // Ẩn toast sau 1 giây
+      setTimeout(() => {
+        showSuccessToast.value = false;
+      }, 1500);
+      // Điều hướng dựa trên role
+      if (userRole === 0) {
+        router.push("/"); // Điều hướng đến trang home cho user
+      } else if (userRole === 1) {
+        router.push("/admin"); // Điều hướng đến trang admin cho admin
+      } else {
+        console.error("Invalid user role."); // Xử lý trường hợp không xác định được role
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert("Email hoặc mật khẩu không đúng. Vui lòng thử lại!");
+      // alert("Email hoặc mật khẩu không đúng. Vui lòng thử lại!");
+      showFailToast.value = true;
+      // Ẩn toast sau 1 giây
+      setTimeout(() => {
+        showFailToast.value = false;
+      }, 1500);
     });
-} 
+}
 </script>

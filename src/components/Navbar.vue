@@ -1,5 +1,5 @@
 <template>
-  <header class="shadow-sm flex justify-between pt-8 md:px-10 lg:px-32 items-center">
+  <header class="z-10 shadow-sm flex justify-between pt-8 md:px-10 lg:px-32 items-center">
     <router-link
       to="/"
       class="text-gray-100 font-bold md:text-3xl lg:text-5xl drop-shadow-lg"

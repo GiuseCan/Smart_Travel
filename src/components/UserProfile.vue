@@ -202,29 +202,26 @@ onMounted(() => {});
 // inputElement.placeholder =  user.user_name;
 async function update() {
   const formData = new FormData();
-  formData.append("user_id", this.user_id);
-  formData.append("user_name", this.user_name);
-  formData.append("password", this.password);
-  formData.append("phone_number", this.phone_number);
-  formData.append("birth_day", this.birth_day);
-  formData.append("gender", this.gender);
-  formData.append("address", this.address);
-  formData.append("avatar", this.avatar);
-  await axios
-    .post(
+  formData.append("user_id", user_id.value);
+  formData.append("user_name", user_name.value);
+  formData.append("password", password.value);
+  formData.append("phone_number", phone_number.value);
+  formData.append("birth_day", birth_day.value);
+  formData.append("gender", gender.value);
+  formData.append("address", address.value);
+  formData.append("avatar", avatar.value);
+
+  try {
+    const response = await axios.post(
       "http://localhost:8080/smart_travel_api/api/user/update.php",
       formData
-    )
-    .then((response) => {
-      localStorage.removeItem("user");
-
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      alert("Cập nhật thành công");
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("Cập nhật thất bại. Xin vui lòng thử lại!");
-    });
+    );
+    localStorage.setItem("user", JSON.stringify(response.data.user));
+    alert("Cập nhật thành công");
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Cập nhật thất bại. Xin vui lòng thử lại!");
+  }
 }
 
 const imageUrl = ref(null);

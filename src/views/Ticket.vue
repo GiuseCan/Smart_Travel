@@ -106,11 +106,102 @@
       />
       <div class="pb-7 flex flex-col gap-5">
         <h5 class="font-bold text-2xl text-gray-900">Thông tin vé online</h5>
-        <p class="text-md text-gray-700">Điền thông tin và xem đặt chỗ</p>
-        <h5 class="pt-5">Thông tin liên hệ</h5>
+        <h4 class="text-lg">ID vé: {{ id_ticket }}</h4>
+        <h5 class="text-lg">Ngày xuất phát: {{ date_start }}</h5>
+        <h5 class="text-lg">Ngày về: {{ date_end }}</h5>
+        <h5 class="text-lg">Tổng chi phí: {{ formatCurrency(total) }}</h5>
+        <h2 class="font-bold pt-10 text-xl">
+          Xem các thông tin chi tiết tại email nhận vé.
+        </h2>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import Footer from "../components/Footer.vue";
+import { onMounted, ref, watch } from "vue";
+import axios from "axios";
+
+const storedUser = localStorage.getItem("user");
+const user = ref(storedUser ? JSON.parse(storedUser) : {});
+
+// Kiểm tra xem user có tồn tại và có giá trị hợp lệ không
+const id_user = ref(
+  user.value && user.value.user && user.value.user.user_id
+    ? user.value.user.user_id
+    : ""
+);
+
+const storedPlan = localStorage.getItem("plan");
+const plan = ref(storedPlan ? JSON.parse(storedPlan) : {});
+console.log(plan.value);
+const emailBooking = ref(localStorage.getItem("emailBooking"));
+
+const id_ticket = ref(plan.value.id_ticket);
+const date_start = ref(plan.value.dateStart);
+const date_end = ref(plan.value.dateEnd);
+const total = ref(plan.value.total);
+// const email = ref(plan.value.email);
+// const id_visits = ref(plan.value.visitList);
+const id_visits = ref(plan.value.visitList.join(",")); // Chuyển mảng thành chuỗi
+
+// console.log(id_visits.value);
+// console.log(emailBooking.value.replace(/^"(.*)"$/, '$1'));
+
+onMounted(async () => {
+  const formDataItinerary = new FormData();
+  formDataItinerary.append("id_user", id_user.value);
+  formDataItinerary.append("id_ticket", id_ticket.value);
+  formDataItinerary.append("date_start", date_start.value);
+  formDataItinerary.append("date_end", date_end.value);
+  formDataItinerary.append("total", total.value);
+  formDataItinerary.append("id_visits", id_visits.value);
+  formDataItinerary.append("paid", 1);
+  formDataItinerary.append(
+    "mailBooking",
+    emailBooking.value.replace(/^"(.*)"$/, "$1")
+  );
+
+  await axios
+    .post(
+      "http://localhost:8080/smart_travel_api/api/checkout/user_booking.php",
+      formDataItinerary
+    )
+    .then((response) => {
+      // Hiển thị thông báo từ server nếu có
+      if (response.data && response.data.message) {
+        alert(response.data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+
+function formatCurrency(total) {
+  // Chuyển đổi số thành chuỗi và tách thành mảng các ký tự
+  const strTotal = total.toString().split("");
+  // Tạo mảng mới để lưu trữ chuỗi kết quả
+  let result = [];
+  // Biến đếm số ký tự
+  let count = 0;
+
+  // Lặp qua từng ký tự trong chuỗi
+  for (let i = strTotal.length - 1; i >= 0; i--) {
+    // Thêm ký tự vào đầu mảng kết quả
+    result.unshift(strTotal[i]);
+    // Tăng biến đếm số ký tự
+    count++;
+    // Nếu đã thêm 3 ký tự và chưa phải là ký tự cuối cùng
+    if (count % 3 === 0 && i !== 0) {
+      // Thêm dấu chấm vào đầu mảng kết quả
+      result.unshift(".");
+    }
+  }
+
+  // Ghép mảng kết quả thành chuỗi và thêm ký tự VND vào cuối
+  return result.join("") + " VND";
+}
+</script>

@@ -15,17 +15,17 @@
         v-for="(location, index) in locations.data.slice(0, 6)"
         :key="index"
         :to="{ name: 'detaillocation', params: { id: location.visit_id } }"
-        class="rounded-t-lg w-72 object-contain shadow-md transition-transform hover:scale-105"
+        class="rounded-t-lg w-72 shadow-md transition-transform hover:scale-105"
       >
         <img
-          class="rounded-t-lg"
-          src="https://preview.colorlib.com/theme/travello/images/destination_2.jpg.webp"
+          class="rounded-t-lg h-1/2 object-cover w-full"
           alt="img"
+          :src="location.img_url"
         />
         <div class="p-3">
           <h3 class="font-bold text-xl py-2">{{ location.visit_name }}</h3>
           <p class="h-16">{{ location.visit_address }}</p>
-          <h5 class="pt-1 font-bold">From ${{ location.tuition_fee }}</h5>
+          <h5 class="pt-1 font-bold">Chỉ từ: {{ formatCurrencyVND(location.tuition_fee) }} VND</h5>
         </div>
       </router-link>
     </div>
@@ -49,4 +49,26 @@ onMounted(async () => {
     console.error(error);
   }
 });
+
+function formatCurrencyVND(number) {
+  // Chuyển số thành chuỗi và đảm bảo là kiểu số nguyên
+  number = parseInt(number).toString();
+
+  // Tạo biến lưu trữ chuỗi kết quả
+  let result = "";
+
+  // Duyệt qua chuỗi số từ phải sang trái
+  for (let i = number.length - 1, j = 0; i >= 0; i--, j++) {
+    // Nếu đến vị trí thứ 3 từ phải sang trái và không phải vị trí cuối cùng
+    if (j % 3 === 0 && j !== 0) {
+      // Thêm dấu chấm vào chuỗi kết quả
+      result = "." + result;
+    }
+    // Thêm ký tự hiện tại vào chuỗi kết quả
+    result = number[i] + result;
+  }
+
+  // Trả về chuỗi kết quả đã được định dạng
+  return result;
+}
 </script>
