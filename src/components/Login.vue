@@ -368,8 +368,8 @@ const showFailToast = ref(false); // Biến để kiểm soát hiển thị toas
 
 async function Login() {
   const formData = new FormData();
-  formData.append("email", this.email);
-  formData.append("password", this.password);
+  formData.append("email", email.value); // Thay vì this.email, bạn sử dụng email.value
+  formData.append("password", password.value);
 
   await axios
     .post("http://localhost:8080/smart_travel_api/api/user/login.php", formData)
