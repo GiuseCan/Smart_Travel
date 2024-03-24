@@ -57,7 +57,7 @@
 
       <div class="rounded-t-lg object-contain flex gap-5 flex-col">
         <h3 class="font-bold text-3xl py-2">{{ visit.visit_name }}</h3>
-        <h5 class="flex items-center">
+        <h5 class="flex items-center font-title">
           <svg
             class="h-5 w-5 mr-3"
             xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@
           </svg>
           {{ visit.visit_address }}
         </h5>
-        <p class="flex mb-3 items-center">
+        <p class="flex mb-3 items-center font-title pr-20">
           <svg
             class="w-20 h-20 mr-3"
             xmlns="http://www.w3.org/2000/svg"
@@ -85,11 +85,11 @@
         </p>
         <h4>
           Thể loại:
-          <span v-for="(hobby, index) in visit.hobbies" :key="index"
+          <span class="font-title" v-for="(hobby, index) in visit.hobbies" :key="index"
             >{{ hobby }},
           </span>
         </h4>
-        <h5 class="pt-1 font-bold">From ${{ visit.tuition_fee }}</h5>
+        <h5 class="font-title pt-1 font-bold">Chỉ từ: {{formatCurrencyVND(visit.tuition_fee)}} VND</h5>
       </div>
     </div>
   </div>
@@ -125,6 +125,28 @@ onMounted(async () => {
       // debugger;
     });
 });
+
+function formatCurrencyVND(number) {
+  // Chuyển số thành chuỗi và đảm bảo là kiểu số nguyên
+  number = parseInt(number).toString();
+
+  // Tạo biến lưu trữ chuỗi kết quả
+  let result = "";
+
+  // Duyệt qua chuỗi số từ phải sang trái
+  for (let i = number.length - 1, j = 0; i >= 0; i--, j++) {
+    // Nếu đến vị trí thứ 3 từ phải sang trái và không phải vị trí cuối cùng
+    if (j % 3 === 0 && j !== 0) {
+      // Thêm dấu chấm vào chuỗi kết quả
+      result = "." + result;
+    }
+    // Thêm ký tự hiện tại vào chuỗi kết quả
+    result = number[i] + result;
+  }
+
+  // Trả về chuỗi kết quả đã được định dạng
+  return result;
+}
 // const currentIndex = ref(0);
 // const isImageVisible = ref(true);
 

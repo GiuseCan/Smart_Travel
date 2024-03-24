@@ -10,6 +10,9 @@ export default {
       colors: {
         "black-rgba": "rgba(239, 239, 239, 0.5)",
       },
+      fontFamily: {
+        title: ["Baloo", "sans-serif"]
+      }
     },
   },
   plugins: [require("flowbite/plugin")],

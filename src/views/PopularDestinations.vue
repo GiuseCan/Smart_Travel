@@ -2,7 +2,7 @@
   <div id="popular" class="flex justify-center flex-wrap">
     <div class="flex items-center flex-col mb-20 w-full">
       <h4 class="text-gray-400 tracking-widest">SIMPLY AMAZING PLACES</h4>
-      <h2 class="text-3xl font-bold text-gray-800 tracking-widest">
+      <h2 class="font-sans text-3xl font-bold text-gray-800 tracking-widest">
         Những điểm đến phổ biến
       </h2>
     </div>
@@ -15,17 +15,17 @@
         v-for="(location, index) in locations.data.slice(0, 6)"
         :key="index"
         :to="{ name: 'detaillocation', params: { id: location.visit_id } }"
-        class="rounded-t-lg w-72 shadow-md transition-transform hover:scale-105"
+        class="flex flex-col justify-between rounded-t-lg max-w-[350px] shadow-md transition-transform hover:scale-105"
       >
         <img
-          class="rounded-t-lg h-1/2 object-cover w-full"
+          class="rounded-t-lg h-3/4 object-cover w-full"
           alt="img"
           :src="location.img_url"
         />
         <div class="p-3">
-          <h3 class="font-bold text-xl py-2">{{ location.visit_name }}</h3>
-          <p class="h-16">{{ location.visit_address }}</p>
-          <h5 class="pt-1 font-bold">Chỉ từ: {{ formatCurrencyVND(location.tuition_fee) }} VND</h5>
+          <h3 class="font-bold text-xl py-2 font-title">{{ location.visit_name }}</h3>
+          <p class="h-16 text-md font-title">{{ location.visit_address }}</p>
+          <h5 class="pt-1 font-bold font-title">Chỉ từ: {{ formatCurrencyVND(location.tuition_fee) }} VND</h5>
         </div>
       </router-link>
     </div>

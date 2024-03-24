@@ -16,7 +16,7 @@ import ManageTicket from "../views/ManageTicket.vue";
 import ManageDepartureAndDestination from "../views/ManageDepartureAndDestination.vue";
 import RenderPlan from "../views/RenderPlan.vue";
 import Login from "../components/Login.vue";
-import Admin from "../components/Admin.vue";
+import Admin from "../components/Admin.vue"
 import UserProfile from "../components/UserProfile.vue";
 import Footer from "../components/Footer.vue";
 
