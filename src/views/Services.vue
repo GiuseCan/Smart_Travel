@@ -308,8 +308,8 @@
           <router-link
             v-if="RenderPlanCheck"
             type="submit"
-            :to="{ name: 'render_plan' }"
-            @click="RenderPlan()"
+            :to="'/services/render_plan'"
+            @click="RenderPlan"
             class="button ml-5 p-3 font-bold rounded-lg bg-amber-600 hover:bg-amber-500 transition-colors text-gray-50"
           >
             <svg
