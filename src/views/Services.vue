@@ -411,14 +411,14 @@ async function RenderPlan() {
   // console.log(cost.value);
   // console.log(myHobby.value);
   const formData = new FormData();
-  formData.append("location_destination", this.location_destination);
-  formData.append("location_departure", this.location_departure);
-  formData.append("date_start", this.date_start);
-  formData.append("date_end", this.date_end);
+  formData.append("location_destination", location_destination.value);
+  formData.append("location_departure", location_departure.value);
+  formData.append("date_start", date_start.value);
+  formData.append("date_end", date_end.value);
   const costNumber = cost.value.replace(/\./g, ""); // Loại bỏ dấu .;
   console.log(costNumber);
   formData.append("cost", costUnformatted.value);
-  formData.append("myhopy", this.myHobby);
+  formData.append("myhopy", myHobby.value);
   // formData.append("myhopy", JSON.stringify(this.myHobby.value));
   await axios
     .post(
