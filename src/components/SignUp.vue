@@ -334,8 +334,8 @@ const password_rewrite = ref("");
 async function Signup() {
   if (password.value.trim() == password_rewrite.value.trim()) {
     const formData = new FormData();
-    formData.append("email", this.email);
-    formData.append("password", this.password);
+    formData.append("email", email.value);
+    formData.append("password", password.value);
 
     await axios
       .post(

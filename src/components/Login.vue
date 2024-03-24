@@ -368,7 +368,7 @@ const showFailToast = ref(false); // Biến để kiểm soát hiển thị toas
 
 async function Login() {
   const formData = new FormData();
-  formData.append("email", email.value);
+  formData.append("email", email.value); // Thay vì this.email, bạn sử dụng email.value
   formData.append("password", password.value);
 
   await axios
